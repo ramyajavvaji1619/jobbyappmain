@@ -5,7 +5,6 @@ import {AiOutlineEye,AiOutlineEyeInvisible} from 'react-icons/ai';
 
 import './index.css';
 
-
 const Auth  = ()=>{
  
     let navigate = useNavigate();
@@ -19,6 +18,7 @@ const Auth  = ()=>{
     const[gender, setGender] = useState("");
     const[password, setPassword] = useState("");
     const[showPassword, setShowPassword] = useState(false);
+
     const renderUserName =()=>{
         return(
           <>
@@ -110,7 +110,28 @@ const Auth  = ()=>{
 const onSubmitForm = async (event) => {
   event.preventDefault();
   if (loginBtn === 'login') {
+    const url = "http://localhost:4447/auth/login"
 
+          const options = {
+              method: 'POST',
+              headers: {
+                  'Content-Type': 'application/json'
+              },
+              body: JSON.stringify({
+                  
+                  email,
+                  password
+              })
+          }
+          const response = await fetch(url, options)
+          const data = await response.json();
+          if (response.ok === true) {
+            Cookies.set('jwt-token',data.token)
+            navigate("/")
+        } else {
+            setShowSubmitError(true);
+            setErrorMsg(data.message)
+        }
   } else {
       if (password.length >= 5 && password.length <= 8) {
           const url = "http://localhost:4447/auth/signup"
@@ -164,7 +185,7 @@ const onSubmitForm = async (event) => {
             signup
             </button>
            </div>
-           <form className="form-container">
+           <form className="form-container" onSubmit={onSubmitForm}>
             <div className="input-container">{loginBtn === 'signup' ? renderUserName():''}</div>
              <div className="input-container">{renderEmail()}</div>
              <div className="input-container">{loginBtn === 'signup' ? renderphnNumber():''}</div>
