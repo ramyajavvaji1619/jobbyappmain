@@ -1,6 +1,7 @@
 import { useEffect,useState } from "react";
 import { useNavigate} from "react-router-dom";
 import Cookies from 'js-cookie';
+import {AiOutlineEye,AiOutlineEyeInvisible} from 'react-icons/ai';
 
 import './index.css';
 
@@ -14,10 +15,10 @@ const Auth  = ()=>{
     const[email, setEmail] = useState("");
     const[phnNumber, setPhnNumber] = useState("");
     const[errorMsg, setErrorMsg] = useState("");
-    const[showSubmitError, setShowSubmitError] = useState("false");
+    const[showSubmitError, setShowSubmitError] = useState(false);
     const[gender, setGender] = useState("");
     const[password, setPassword] = useState("");
-
+    const[showPassword, setShowPassword] = useState(false);
     const renderUserName =()=>{
         return(
           <>
@@ -86,24 +87,68 @@ const Auth  = ()=>{
     }
 
 
-    const renderpassword =()=>{
-        return(
+    const renderPassword = () => {
+      return (
           <>
-          <label className="label" htmlFor="name">password</label>
-            <input
-            type="password"
-            id="password"
-            placeholder="Enter your password"
-            className="user-input"
-            value={password}
-            onChange={((e)=>setPassword(e.target.value))}
-            />
-         </>
-        )
-    }
-
+              <label className="label" htmlFor="password">Password</label>
+              <div className="password-container">
+                  <input type={showPassword ? 'text' : 'password'}
+                      id="password" placeholder="Enter Your Password" className="user-input-password" value={password}
+                      onChange={((e) => setPassword(e.target.value))}
+                  />
+                  <button className="button-icon" onClick={(() => setShowPassword(!showPassword))}>
+                      {showPassword ? <AiOutlineEye /> : <AiOutlineEyeInvisible />}
+                  </button>
+              </div>
+          </>
+      )
+  }
 
 //    console.log(name);
+
+
+const onSubmitForm = async (event) => {
+  event.preventDefault();
+  if (loginBtn === 'login') {
+
+  } else {
+      if (password.length >= 5 && password.length <= 8) {
+          const url = "http://localhost:4447/auth/signup"
+
+          const options = {
+              method: 'POST',
+              headers: {
+                  'Content-Type': 'application/json'
+              },
+              body: JSON.stringify({
+                  name,
+                  email,
+                  phoneNumber: phnNumber,
+                  gender,
+                  password
+              })
+          }
+          const response = await fetch(url, options)
+          const data = await response.json();
+
+          if (response.ok === true) {
+              setLoginBtn('login')
+          } else {
+              setShowSubmitError(true);
+              setErrorMsg(data.message)
+          }
+      } else {
+          setShowSubmitError(true);
+          setErrorMsg("Password length should be 5 to 8")
+      }
+  }
+  setName("");
+  setEmail("");
+  setPassword("");
+  setGender("");
+  setPhnNumber("");
+}
+
 
     return(
         <div className="jobby-app-container">
@@ -124,12 +169,14 @@ const Auth  = ()=>{
              <div className="input-container">{renderEmail()}</div>
              <div className="input-container">{loginBtn === 'signup' ? renderphnNumber():''}</div>
              <div className="input-container">{loginBtn === 'signup' ? rendergender():''}</div>
-             <div className="input-container">{renderpassword()}</div>
+             <div className="input-container">{renderPassword()}</div>
+             <button className="login-button" type="submit">{loginBtn === 'login' ? 'Login' : 'Sign Up'}</button>
+             {showSubmitError && <p className="error-msg">{errorMsg}</p>}
            </form>
            </div>
         </div>
     )
-}
+}                                
 
 
  export default Auth;

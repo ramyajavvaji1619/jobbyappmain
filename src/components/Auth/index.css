@@ -59,3 +59,29 @@
     color: #535369;
     background:none;
 }
+.error-msg{
+    color: red;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+.password-container{
+    color: #f1f5f9;
+    padding: 5px;
+    margin: 5px;
+    border: 1px solid #b6c5ff;
+    background: transparent;
+    border-radius: 5px;
+    outline: none;
+}
+
+.user-input-password{
+    padding-left: 0;
+    color: #f1f5f9;
+    background: none;
+    border: none;
+    outline: none;
+}
+.button-icon{
+    background: none;
+    border:none ;
+    color: violet;
+}
