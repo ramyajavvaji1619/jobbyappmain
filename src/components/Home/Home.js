@@ -15,6 +15,11 @@ const Home = ()=>{
     //         navigate("/auth");
     //     }
     // })
+  
+
+     const goToJobs = ()=>{
+        navigate('/jobs')
+     }
 
     return(
         <>
@@ -23,7 +28,7 @@ const Home = ()=>{
             <div className="responsive-container">
                 <h1 className="main-heading">Find the jobs Fits Your Life</h1>
                 <p className="job-desc">Millions of People are searching for jobs ,salary,information,company reviews .Find the Job that fits your abilities and potential.</p>
-                <button className="find-jobs">Find Jobs</button>
+                <button className="find-jobs" onClick={goToJobs}>Find Jobs</button>
             </div>
         </div>
         </>

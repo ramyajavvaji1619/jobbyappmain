@@ -6,6 +6,7 @@ const Header= () =>{
     let navigate=useNavigate();
 
     const onClickLogout =()=>{
+        
         Cookies.remove('jwt-token')
         navigate('/auth')
     }
