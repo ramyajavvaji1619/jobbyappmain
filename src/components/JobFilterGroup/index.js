@@ -1,62 +1,84 @@
-import ProfileDetails from '../ProfileDetails'
-import './index.css'
-
+import ProfileDetails from "../ProfileDetails";
+import "./index.css";
 
 const JobFilterGroup = (props) => {
-    const { employementTypesList, salaryRangeList, changeEmployemetType, changeSalary, searchInput, getJobs } = props;
+  const {
+    employementTypesList,
+    salaryRangeList,
+    changeEmployementType,
+    changeSalary,
+  } = props;
 
-    const getEmployementTypesList = () => {
-        return employementTypesList.map((employ => {
-            const onChangeEmployemetType = event =>
-                changeEmployemetType(event.target.value)
+  const getEmployementTypesList = () => {
+    return employementTypesList.map((employ) => {
+      const onChangeEmployementType = (event) =>
+        changeEmployementType(event.target.value);
+      console.log(employementTypesList);
 
-            return (
-                <li className='checkbox-list-items'
-                    key={employ.employementTypeId}
-                    onChange={onChangeEmployemetType}>
-                    <input type='checkbox' className='check-radio' id={employ.employementTypeId} value={employ.employementTypeId} />
-                    <label className='check-label' htmlFor={employ.employementTypeId}>{employ.label}</label>
-                </li>
-            )
-        }))
-    }
+      return (
+        <li
+          className="checkbox-list-items"
+          key={employ.employementTypeId}
+          onChange={onChangeEmployementType}
+        >
+          <input
+            type="checkbox"
+            className="check-radio"
+            id={employ.employementTypeId}
+            name={employ}
+          />
+          <label className="check-label" htmlFor={employ.employementTypeId}>
+            {employ.label}
+          </label>
+        </li>
+      );
+    });
+  };
 
-    const renderEmployementTypesList = () => (
-        <div className='salary-container'>
-            <h1 className='salary-heading'>Type Of Employement</h1>
-            <ul className='salary-range-container'>{getEmployementTypesList()}</ul>
-        </div>
-    )
+  const renderEmployementTypesList = () => (
+    <div className="salary-container">
+      <h1 className="salary-heading">Type Of Employement</h1>
+      <ul className="salary-range-container">{getEmployementTypesList()}</ul>
+    </div>
+  );
 
-    const getSalaryRangeList = () => {
-        return salaryRangeList.map(salary => {
-            const onChangeSalary = () => (changeSalary(salary.salaryRangeId))
-            return (
-                <li className='checkbox-list-items'
-                    key={salary.salaryRangeId}
-                    onChange={onChangeSalary}>
-                    <input type='radio' className='check-radio' id={salary.salaryRangeId}
-                        name={salary} />
-                    <label className='check-label' htmlFor={salary.salaryRangeId}>{salary.label}</label>
-                </li>
-            )
-        })
-    }
+  const getSalaryRangeList = () => {
+    return salaryRangeList.map((salary) => {
+      const onChangeSalary = () => changeSalary(salary.salaryRangeId);
+      return (
+        <li
+          className="checkbox-list-items"
+          key={salary.salaryRangeId}
+          onChange={onChangeSalary}
+        >
+          <input
+            type="radio"
+            className="check-radio"
+            id={salary.salaryRangeId}
+            name={salary}
+          />
+          <label className="check-label" htmlFor={salary.salaryRangeId}>
+            {salary.label}
+          </label>
+        </li>
+      );
+    });
+  };
 
-    const renderSalaryRangeList = () => (
-        <div className='salary-container'>
-            <h1 className='salary-heading'>Salary Range</h1>
-            <ul className='salary-range-container'>{getSalaryRangeList()}</ul>
-        </div>
-    )
-    return (
-        <div className='job-filter-group'>
-            <ProfileDetails />
-            <hr className='horizontal-line' />
-            {renderEmployementTypesList()}
-            <hr className='horizontal-line' />
-            {renderSalaryRangeList()}
-        </div>
-    )
-}
+  const renderSalaryRangeList = () => (
+    <div className="salary-container">
+      <h1 className="salary-heading">Salary Range</h1>
+      <ul className="salary-range-container">{getSalaryRangeList()}</ul>
+    </div>
+  );
+  return (
+    <div className="job-filter-group">
+      <ProfileDetails />
+      <hr className="horizontal-line" />
+      {renderEmployementTypesList()}
+      <hr className="horizontal-line" />
+      {renderSalaryRangeList()}
+    </div>
+  );
+};
 export default JobFilterGroup;

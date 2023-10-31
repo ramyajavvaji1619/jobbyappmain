@@ -52,7 +52,7 @@ const apiStatusConstants = {
 }
 
 const JobProfileSection = () => {
-    const [jobs, setJobs] = useState({})
+    const [jobs, setJobs] = useState([])
     const [searchInput, setSearchInput] = useState("")
     const [employementType, setEmployementType] = useState([])
     const [salaryRange, setSalaryRange] = useState(0);
@@ -60,7 +60,7 @@ const JobProfileSection = () => {
 
     useEffect(() => {
         getJobs()
-    }, [employementType,salaryRange,searchInput]);
+    }, [employementType, salaryRange, searchInput]);
 
     const getJobs = async () => {
         setApiStatus(apiStatusConstants.inProgress)
@@ -101,7 +101,7 @@ const JobProfileSection = () => {
         setSalaryRange(salary);
     }
 
-    const onChangeEmployemetType = (type) => {
+    const onChangeEmployementType = (type) => {
         setEmployementType((prev) => [...prev, type])
     }
 
@@ -192,7 +192,7 @@ const JobProfileSection = () => {
                 <JobFilterGroup
                 employementTypesList={employementTypesList}
                 salaryRangeList={salaryRangeList}
-                changeEmployemetType={onChangeEmployemetType}
+                changeEmployementType={onChangeEmployementType}
                 changeSalary={onChangeSalary}
                 searchInput={searchInput}
                 getJobs={getJobs}/>
