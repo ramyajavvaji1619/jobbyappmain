@@ -14,7 +14,7 @@ const JobFilterGroup = (props) => {
                 <li className='checkbox-list-items'
                     key={employ.employementTypeId}
                     onChange={onChangeEmployemetType}>
-                    <input type='chechbox' className='check-radio' id={employ.employementTypeId} value={employ.employementTypeId} />
+                    <input type='checkbox' className='check-radio' id={employ.employementTypeId} value={employ.employementTypeId} />
                     <label className='check-label' htmlFor={employ.employementTypeId}>{employ.label}</label>
                 </li>
             )
