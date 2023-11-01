@@ -10,11 +10,11 @@ const Home = ()=>{
 
     const token=Cookies.get('jwt_token');
     
-    // useEffect(()=>{
-    //     if(token === undefined){
-    //         navigate("/auth");
-    //     }
-    // })
+    useEffect(()=>{
+        if(token === undefined){
+            navigate("/");
+        }
+    })
   
 
      const goToJobs = ()=>{

@@ -8,7 +8,9 @@ import './index.css';
 const Auth  = ()=>{
  
     let navigate = useNavigate();
-
+       const goToHome =()=>{
+        navigate("/");
+       }
     const[loginBtn, setLoginBtn] = useState("login");
     const[name, setName] = useState("");
     const[email, setEmail] = useState("");
@@ -177,7 +179,7 @@ const onSubmitForm = async (event) => {
             <img src="https://assets.ccbp.in/frontend/react-js/logo-img.png" alt="logo" className="w-25"/>
            <div>
            <button className={loginBtn ==='login'? 'login-button':'login-button btn-off'}
-           onClick={(()=>setLoginBtn('login'))}>
+           onClick={goToHome}>
             login
             </button>
            <button className={loginBtn ==='signup'? 'login-button':'login-button btn-off'}

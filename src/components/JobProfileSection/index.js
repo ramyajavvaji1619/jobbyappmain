@@ -60,13 +60,13 @@ const JobProfileSection = () => {
 
     useEffect(() => {
         getJobs()
-    }, [ salaryRange]);
+    }, [employmentType, salaryRange]);
 
     const getJobs = async () => {
         setApiStatus(apiStatusConstants.inProgress)
         const token = Cookies.get('jwt-token')
         
-        const url = `http://localhost:4447/api/filterjobs?employementType=${employmentType.join()}&minimum_package=${salaryRange}&search=${searchInput}`
+        const url = `http://localhost:4447/api/filterjobs?employmentType=${employmentType.join()}&minimum_package=${salaryRange}&search=${searchInput}`
         const options = {
             method: "GET",
             headers: {
