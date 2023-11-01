@@ -6,22 +6,22 @@ import JobCard from "../JobCard";
 import JobFilterGroup  from "../JobFilterGroup";
 import './index.css';
 
-const employementTypesList = [
+const employmentTypesList = [
     {
         label: "Full Time",
-        employementTypeId: "FULL TIME",
+        employmentTypeId: "FULL TIME",
     },
     {
         label: "Part Time",
-        employementTypeId: "PART TIME",
+        employmentTypeId: "PART TIME",
     },
     {
         label: "Freelance",
-        employementTypeId: "FREELANCE",
+        employmentTypeId: "FREELANCE",
     },
     {
         label: "Internship",
-        employementTypeId: "INTERNSHIP",
+        employmentTypeId: "INTERNSHIP",
     }
 ]
 
@@ -54,19 +54,19 @@ const apiStatusConstants = {
 const JobProfileSection = () => {
     const [jobs, setJobs] = useState([])
     const [searchInput, setSearchInput] = useState("")
-    const [employementType, setEmployementType] = useState([])
+    const [ employmentType, setEmploymentType] = useState([])
     const [salaryRange, setSalaryRange] = useState(0);
     const [apiStatus, setApiStatus] = useState(apiStatusConstants.initial);
 
     useEffect(() => {
         getJobs()
-    }, [employementType, salaryRange, searchInput]);
+    }, [ salaryRange]);
 
     const getJobs = async () => {
         setApiStatus(apiStatusConstants.inProgress)
         const token = Cookies.get('jwt-token')
         
-        const url = `http://localhost:4447/api/filterjobs?employement_type=${employementType.join()}&minimum_package=${salaryRange}&search=${searchInput}`
+        const url = `http://localhost:4447/api/filterjobs?employementType=${employmentType.join()}&minimum_package=${salaryRange}&search=${searchInput}`
         const options = {
             method: "GET",
             headers: {
@@ -101,8 +101,8 @@ const JobProfileSection = () => {
         setSalaryRange(salary);
     }
 
-    const onChangeEmployementType = (type) => {
-        setEmployementType((prev) => [...prev, type])
+    const onChangeEmploymentType = (type) => {
+        setEmploymentType((prev) => [...prev, type])
     }
 
     const onKeyDown = (e) => {
@@ -190,9 +190,9 @@ const JobProfileSection = () => {
         <div className="job-details-container">
             <div className="render-group-items">
                 <JobFilterGroup
-                employementTypesList={employementTypesList}
+                employmentTypesList={employmentTypesList}
                 salaryRangeList={salaryRangeList}
-                changeEmployementType={onChangeEmployementType}
+                changeEmploymentType={onChangeEmploymentType}
                 changeSalary={onChangeSalary}
                 searchInput={searchInput}
                 getJobs={getJobs}/>

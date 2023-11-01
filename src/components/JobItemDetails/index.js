@@ -78,7 +78,7 @@ const JobItemDetails = () => {
     );
 
     const renderJobItemDetails = () => {
-        const { companyLogoUrl, companyWebsiteUrl, employementType, jobDescription, lifeAtCompany, location, packagePerAnnum, rating, title ,skills} = JobItemDetails;
+        const { companyLogoUrl, companyWebsiteUrl,  employmentType, jobDescription, lifeAtCompany, location, packagePerAnnum, rating, title ,skills} = JobItemDetails;
         const { description, imageUrl } = lifeAtCompany
         return (
             <div className="full-job-item-container">
@@ -104,7 +104,7 @@ const JobItemDetails = () => {
                             </div>
                             <div className="responsive">
                                 <BsBriefcaseFill className="location-logo-breif" />
-                                <p className="location-desc">{employementType}</p>
+                                <p className="location-desc">{ employmentType}</p>
                             </div>
                         </div>
                         <p className="package-desc">{packagePerAnnum}</p>

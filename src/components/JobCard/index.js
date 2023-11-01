@@ -5,7 +5,7 @@ import './index.css'
 
 const JobCard = (props)=>{
     const {jobDetails} = props;
-    const {companyLogoUrl, employementType, jobDescription,location, packagePerAnnum,rating,title,_id} = jobDetails
+    const {companyLogoUrl,  employmentType, jobDescription,location, packagePerAnnum,rating,title,_id} = jobDetails
 
     return(
         <Link className='link-item' to={`/jobs/${_id}`}>
@@ -30,7 +30,7 @@ const JobCard = (props)=>{
                     </div>
                     <div className="star-icon-container">
                         <HiMail className="location-icon left-icon"/>
-                        <p className="location-desc-description">{employementType}</p>
+                        <p className="location-desc-description">{ employmentType}</p>
                     </div>
                 </div>
                 <div className="star-icon-container">

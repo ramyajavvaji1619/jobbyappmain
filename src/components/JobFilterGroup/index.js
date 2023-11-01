@@ -3,31 +3,33 @@ import "./index.css";
 
 const JobFilterGroup = (props) => {
   const {
-    employementTypesList,
+    employmentTypesList,
     salaryRangeList,
-    changeEmployementType,
+    changeEmploymentType,
     changeSalary,
+    searchInput,
+    getJobs
   } = props;
 
-  const getEmployementTypesList = () => {
-    return employementTypesList.map((employ) => {
-      const onChangeEmployementType = (event) =>
-        changeEmployementType(event.target.value);
-      console.log(employementTypesList);
+  const getEmploymentTypesList = () => {
+    return employmentTypesList.map((employ) => {
+      const onChangeEmploymentType = (event) =>
+        changeEmploymentType(event.target.value);
+      console.log(employmentTypesList);
 
       return (
         <li
           className="checkbox-list-items"
-          key={employ.employementTypeId}
-          onChange={onChangeEmployementType}
+          key={employ.employmentTypeId}
+          onChange={onChangeEmploymentType}
         >
           <input
             type="checkbox"
             className="check-radio"
-            id={employ.employementTypeId}
-            name={employ}
+            id={employ.employmentTypeId}
+            value={employ.employmentTypeId}
           />
-          <label className="check-label" htmlFor={employ.employementTypeId}>
+          <label className="check-label" htmlFor={employ.employmentTypeId}>
             {employ.label}
           </label>
         </li>
@@ -35,10 +37,10 @@ const JobFilterGroup = (props) => {
     });
   };
 
-  const renderEmployementTypesList = () => (
+  const renderEmploymentTypesList = () => (
     <div className="salary-container">
       <h1 className="salary-heading">Type Of Employement</h1>
-      <ul className="salary-range-container">{getEmployementTypesList()}</ul>
+      <ul className="salary-range-container">{getEmploymentTypesList()}</ul>
     </div>
   );
 
@@ -75,7 +77,7 @@ const JobFilterGroup = (props) => {
     <div className="job-filter-group">
       <ProfileDetails />
       <hr className="horizontal-line" />
-      {renderEmployementTypesList()}
+      {renderEmploymentTypesList()}
       <hr className="horizontal-line" />
       {renderSalaryRangeList()}
     </div>
