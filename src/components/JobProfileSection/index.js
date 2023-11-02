@@ -101,9 +101,19 @@ const JobProfileSection = () => {
         setSalaryRange(salary);
     }
 
-    const onChangeEmploymentType = (type) => {
-        setEmploymentType((prev) => [...prev, type])
-    }
+    // const onChangeEmploymentType = (type) => {
+    //     setEmploymentType((prev) => [...prev, type])
+    // }
+
+
+    const onChangeEmploymentType = (typeId) =>{
+        if(employmentType.includes(typeId)) {
+            setEmploymentType(employmentType.filter((eachType)=> eachType !== typeId));
+        }
+        else{
+            setEmploymentType([...employmentType, typeId]);
+        }
+    };
 
     const onKeyDown = (e) => {
         if (e.key === 'Enter') {
